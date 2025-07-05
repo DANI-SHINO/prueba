@@ -1,3 +1,5 @@
+# myapp.py
+
 from flask import Flask
 from app.extensions import db, login_manager, mail
 from app.models import Usuario
@@ -14,7 +16,6 @@ def create_app():
     login_manager.init_app(app)
     mail.init_app(app)
 
-    # ⬇️ Aquí va el único user_loader, dentro del contexto correcto
     @login_manager.user_loader
     def load_user(user_id):
         return Usuario.query.get(int(user_id))
@@ -45,8 +46,8 @@ def create_app():
 
     return app
 
-app = create_app()
-
+# Esto solo es útil para pruebas locales
 if __name__ == '__main__':
+    app = create_app()
     enviar_recordatorios(app)
     app.run(debug=True)
