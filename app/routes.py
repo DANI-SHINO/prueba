@@ -30,10 +30,6 @@ def nocache(view):
 main = Blueprint('main', __name__)
 login_manager.login_view = 'main.login'
 
-@login_manager.user_loader
-def load_user(user_id):
-    return Usuario.query.get(int(user_id))
-
 def roles_requeridos(*roles):
     def decorator(f):
         @wraps(f)
