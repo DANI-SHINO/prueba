@@ -21,6 +21,6 @@ class Config:
     MAIL_SERVER = 'sandbox.smtp.mailtrap.io'
     MAIL_PORT = 2525
     MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get('5941fdd25fae2b')
-    MAIL_PASSWORD = os.environ.get('d4e6b9abc0517e')
+    MAIL_USERNAME = '5941fdd25fae2b'
+    MAIL_PASSWORD = 'd4e6b9abc0517e'
 
