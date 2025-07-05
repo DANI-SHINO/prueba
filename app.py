@@ -14,10 +14,14 @@ def create_app():
     login_manager.init_app(app)
     mail.init_app(app)
 
+    # ⬇️ Aquí va el único user_loader, dentro del contexto correcto
+    @login_manager.user_loader
+    def load_user(user_id):
+        return Usuario.query.get(int(user_id))
+
     app.register_blueprint(main)
 
     with app.app_context():
-        # ¡IMPORTANTE! Crea todas las tablas si no existen
         db.create_all()
 
         if not Usuario.query.filter_by(rol='administrador').first():
